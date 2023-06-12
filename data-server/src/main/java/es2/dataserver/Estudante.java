@@ -22,10 +22,6 @@ public class Estudante {
     private String nome;
     private String endereco;
     @ManyToMany
-    @JoinTable(
-        name = "EstudanteDisciplina",
-        joinColumns = @JoinColumn(name = "matricula"),
-        inverseJoinColumns = @JoinColumn(name = "turmaCodigo"))
     private List<Disciplina> disciplinas;
 
     public Estudante(){}
@@ -76,6 +72,12 @@ public class Estudante {
     public List<Disciplina> getDisciplinas() {
         return disciplinas;
     }
+
+    public boolean addDisciplina(Disciplina disciplina)
+    {
+        return disciplinas.add(disciplina);
+    }
+
 
     
 }

@@ -1,10 +1,9 @@
 {
     "java.project.sourcePaths": [
-        "src",
-        "data-server\\src"
-    ],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
+        "data-server\\src",
+        "consultas-server\\src",
+        "matriculas-server\\src",
+        "api-gateway\\src",
+        "naming-server\\src"
     ]
 }

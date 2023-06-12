@@ -8,13 +8,16 @@ import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.IdClass;
 import java.util.List;
 
 @Entity
+@IdClass(DisciplinaId.class)
 public class Disciplina {
     @Id
+    private long turmacodigo;
+    @Id
     private String codigo;
-    private int turmaCodigo;
     private String nome;
     private String horario;
     @ManyToMany(mappedBy = "disciplinas",
@@ -23,12 +26,56 @@ public class Disciplina {
 
     public Disciplina(){}
 
-    public Disciplina(String codigo, String nome, String horario, int turmaCodigo) {
+    public Disciplina(long turmacodigo, String codigo, String nome, String horario, List<Estudante> estudantes) {
+        this.turmacodigo = turmacodigo;
         this.codigo = codigo;
         this.nome = nome;
         this.horario = horario;
-        this.turmaCodigo = turmaCodigo;
+        this.estudantes = estudantes;
     }
+
+    public long getTurmacodigo() {
+        return turmacodigo;
+    }
+
+    public void setTurmacodigo(long turmacodigo) {
+        this.turmacodigo = turmacodigo;
+    }
+
+    public String getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(String codigo) {
+        this.codigo = codigo;
+    }
+
+    public String getNome() {
+        return nome;
+    }
+
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    public String getHorario() {
+        return horario;
+    }
+
+    public void setHorario(String horario) {
+        this.horario = horario;
+    }
+
+    public List<Estudante> getEstudantes() {
+        return estudantes;
+    }
+
+    public void setEstudantes(List<Estudante> estudantes) {
+        this.estudantes = estudantes;
+    }
+
+    
+
     
 
 }
