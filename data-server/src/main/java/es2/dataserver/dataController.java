@@ -5,6 +5,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 import java.util.Optional;
@@ -65,5 +66,10 @@ public class dataController
         return true;
     }
 
-    //@PostMapping("")
+    @PostMapping("matricular")
+    public boolean matricularEstudante(@RequestBody Estudante estudante)
+    {
+        repository.save(estudante);
+        return true;
+    }
 }
