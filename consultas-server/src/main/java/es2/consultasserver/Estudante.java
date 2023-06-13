@@ -22,32 +22,16 @@ public class Estudante
         return matricula;
     }
 
-    public void setMatricula(long matricula) {
-        this.matricula = matricula;
-    }
-
     public String getDocnum() {
         return docnum;
-    }
-
-    public void setDocnum(String docnum) {
-        this.docnum = docnum;
     }
 
     public String getNome() {
         return nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
     public String getEndereco() {
         return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
     }
 }
 
