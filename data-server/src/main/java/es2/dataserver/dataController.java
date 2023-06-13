@@ -45,15 +45,15 @@ public class dataController
     }
 
     @GetMapping("getEstudante/{matricula}/Disciplinas")
-    public List<String> findEstudanteDisciplinas(@PathVariable long matricula)
+    public List<DisciplinaDTO> findEstudanteDisciplinas(@PathVariable long matricula)
     {
-        return getByMatricula(matricula).getDisciplinas().stream().map(i -> i.getNome()).collect(Collectors.toList());
+        return getByMatricula(matricula).getDisciplinas().stream().map(d -> new DisciplinaDTO(d)).collect(Collectors.toList());
     }
 
     @GetMapping("getDisciplina/{codigo}/{turmacodigo}/Estudantes")
-    public List<String> findDisciplinaEstudante(@PathVariable String codigo, @PathVariable long turmacodigo)
+    public List<EstudanteDTO> findDisciplinaEstudante(@PathVariable String codigo, @PathVariable long turmacodigo)
     {
-        return findById(codigo, turmacodigo).getEstudantes().stream().map(i -> i.getNome()).collect(Collectors.toList());
+        return findById(codigo, turmacodigo).getEstudantes().stream().map(e -> new EstudanteDTO(e)).collect(Collectors.toList());
     }
 
     @PostMapping("matricular/{matricula}/{codigo}/{turmacodigo}")

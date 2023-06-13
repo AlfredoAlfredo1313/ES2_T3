@@ -1,17 +1,15 @@
 package es2.dataserver;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.JoinTable;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Estudante {
@@ -21,7 +19,8 @@ public class Estudante {
     private String docnum;
     private String nome;
     private String endereco;
-    @ManyToMany
+    @JsonIgnore
+    @ManyToMany(fetch = FetchType.LAZY)
     private List<Disciplina> disciplinas;
 
     public Estudante(){}
@@ -37,7 +36,7 @@ public class Estudante {
         return matricula;
     }
 
-    public String getDocNum() {
+    public String getDocnum() {
         return docnum;
     }
 
@@ -49,7 +48,7 @@ public class Estudante {
         this.matricula = matricula;
     }
 
-    public void setDocNum(String docnum) {
+    public void setDocnum(String docnum) {
         this.docnum = docnum;
     }
 
@@ -77,7 +76,4 @@ public class Estudante {
     {
         return disciplinas.add(disciplina);
     }
-
-
-    
 }
