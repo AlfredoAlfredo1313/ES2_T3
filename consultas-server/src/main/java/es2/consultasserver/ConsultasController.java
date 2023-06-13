@@ -4,6 +4,8 @@ package es2.consultasserver;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -11,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-import java.util.regex.*;
 
 @RestController
 public class ConsultasController {
@@ -33,24 +34,27 @@ public class ConsultasController {
 
     //parte do nome
     @GetMapping("/consultas-server-feign/consulta-estudante-parte-nome/{nome}")
-    public Estudante getParteNome(@PathVariable String nome) {
-       Estudante currencyConversion = proxy.getParteNome(nome);
+    public List<Estudante> getParteNome(@PathVariable String nome) {
+        List<Estudante> estudantes = proxy.getodosEstudantes();
+        return estudantes.stream().filter(n -> n.getNome().contains(nome)).collect(Collectors.toList());
         
-       String regexNome = currencyConversion.getNome();
-        
-        String tiraEspeciais = Pattern.quote(regexNome);
-        Pattern pattern = Pattern.compile(tiraEspeciais);
-        Matcher matcher = pattern.matcher(nome);
-
-        if (matcher.find()) {
-        return new Estudante(currencyConversion.getMatricula(),  
-			currencyConversion.getDocnum(), 
-			currencyConversion.getNome(), 
-			currencyConversion.getEndereco(),
-            currencyConversion.getDisciplinas()
-        );
-        }
-        return currencyConversion;
+    //    Estudante currencyConversion = proxy.getParteNome(nome);
+        // 
+    //    String regexNome = currencyConversion.getNome();
+        // 
+        // String tiraEspeciais = Pattern.quote(regexNome);
+        // Pattern pattern = Pattern.compile(tiraEspeciais);
+        // Matcher matcher = pattern.matcher(nome);
+// 
+        // if (matcher.find()) {
+        // return new Estudante(currencyConversion.getMatricula(),  
+			// currencyConversion.getDocnum(), 
+			// currencyConversion.getNome(), 
+			// currencyConversion.getEndereco(),
+            // currencyConversion.getDisciplinas()
+        // );
+        // }
+        // return currencyConversion;
     }
 
     

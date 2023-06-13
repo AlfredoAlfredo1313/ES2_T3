@@ -16,8 +16,8 @@ public interface ConsultasProxy {
     @GetMapping("getEstudante/{nome}")
     public Estudante getParteNome(@PathVariable String nome);
 
-    @GetMapping("getDisciplina/Codigo/TurmaCodigo/Estudantes")
-    public Disciplina getodosEstudantes();
+    @GetMapping("getEstudante")
+    public List<Estudante> getodosEstudantes();
 
     @GetMapping("getEstudante/{matricula}/Disciplinas")
     public Estudante getDisciplinasEmEstudante(@PathVariable long matricula);
