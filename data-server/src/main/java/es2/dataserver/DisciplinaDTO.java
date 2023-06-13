@@ -1,4 +1,4 @@
-package es2.DataServerApplication;
+package es2.dataserver;
 
 public class DisciplinaDTO {
     
