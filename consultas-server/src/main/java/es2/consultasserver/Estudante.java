@@ -5,19 +5,19 @@ import java.util.List;
 public class Estudante {
 
     private long matricula;
-    private String docnum;
     private String nome;
     private String endereco;
     private List<Disciplina> disciplinas;
+    private String docnum;
 
      public Estudante(){}
 
     public Estudante(long matricula, String docnum, String nome, String endereco, List<Disciplina> disciplinas) {
         this.matricula = matricula;
-        this.docnum = docnum;
         this.nome = nome;
         this.endereco = endereco;
         this.disciplinas = disciplinas;
+        this.docnum = docnum;
     }
 
 

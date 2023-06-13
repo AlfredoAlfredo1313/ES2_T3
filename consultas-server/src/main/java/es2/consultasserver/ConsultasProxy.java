@@ -14,16 +14,16 @@ public interface ConsultasProxy {
     public Estudante getEstudanteByMatricula(@PathVariable long matricula);
 
     @GetMapping("getEstudante/{nome}")
-    public List<Estudante> getParteNome(@PathVariable String nome);
+    public Estudante getParteNome(@PathVariable String nome);
 
-    @GetMapping("getDisciplina/")
-    public List<Estudante> getodosEstudantes(@PathVariable String nome);
+    @GetMapping("getDisciplina/Codigo/TurmaCodigo/Estudantes")
+    public Disciplina getodosEstudantes();
 
     @GetMapping("getEstudante/{matricula}/Disciplinas")
-    public List<Estudante> getDisciplinasEmEstudante(@PathVariable long matricula);
+    public Estudante getDisciplinasEmEstudante(@PathVariable long matricula);
 
     @GetMapping("getDisciplina/{codigo}/{turmacodigo}/Estudantes")
-    public List<Disciplina> getEstudantesEmDisciplina(@PathVariable String codigo, @PathVariable String turmacodigo);
+    public Disciplina getEstudantesEmDisciplina(@PathVariable String codigo, @PathVariable String turmacodigo);
     
 }
 

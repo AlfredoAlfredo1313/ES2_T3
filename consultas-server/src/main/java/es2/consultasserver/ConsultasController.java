@@ -2,6 +2,7 @@ package es2.consultasserver;
 
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
+import java.util.regex.*;
 
 @RestController
 public class ConsultasController {
@@ -29,24 +31,43 @@ public class ConsultasController {
         );
     }
 
-    //parte nome
+    //parte do nome
     @GetMapping("/consultas-server-feign/consulta-estudante-parte-nome/{nome}")
-    public List<Estudante> getParteNome(@PathVariable String nome) {
-        List <Estudante> currencyConversion = proxy.getParteNome(nome);
+    public Estudante getParteNome(@PathVariable String nome) {
+       Estudante currencyConversion = proxy.getParteNome(nome);
         
+       String regexNome = currencyConversion.getNome();
+        
+        String tiraEspeciais = Pattern.quote(regexNome);
+        Pattern pattern = Pattern.compile(tiraEspeciais);
+        Matcher matcher = pattern.matcher(nome);
+
+        if (matcher.find()) {
+        return new Estudante(currencyConversion.getMatricula(),  
+			currencyConversion.getDocnum(), 
+			currencyConversion.getNome(), 
+			currencyConversion.getEndereco(),
+            currencyConversion.getDisciplinas()
+        );
+        }
         return currencyConversion;
     }
 
     
+    /*
     //todos estudantes
-    /*@GetMapping("/consultas-server-feign/todos-estudantes")
-    public List<Estudante> getTodosEstudantesx(@PathVariable String nome) {
-        List <Estudante> currencyConversion = proxy.getodosEstudantes();
-        
-        return currencyConversion;
-    }*/
+    @GetMapping("/consultas-server-feign/todos-estudantes")
+    public Disciplina getTodosEstudantesx() {
+        Disciplina currencyConversion = proxy.getodosEstudantes();
+        return new Disciplina(currencyConversion.getTurmacodigo(), 
+			currencyConversion.getCodigo(), 
+			currencyConversion.getNome(),
+            currencyConversion.getHorario(),
+            currencyConversion.getEstudantes());
+    }
 
     //consultar disciplinas de um estudante
+    
     @GetMapping("/consultas-server-feign/consultar-disciplinas-estudante/{matricula}")
     public List<Estudante> getDisciplinaPorEstudante(@PathVariable long matricula) {
         List <Estudante> currencyConversion = proxy.getDisciplinasEmEstudante(matricula);
@@ -61,6 +82,7 @@ public class ConsultasController {
         
         return currencyConversion;
     }
+    */
 
     
 }
