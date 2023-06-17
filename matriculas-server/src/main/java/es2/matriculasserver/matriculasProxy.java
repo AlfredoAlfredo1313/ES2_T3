@@ -10,12 +10,12 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "data-server")
 public interface matriculasProxy {
     
-    @PostMapping("matricularEstudante")
+    @PostMapping("data/matricularEstudante")
     public boolean matricularEstudante(@RequestBody Estudante estudante);
 
-    @PostMapping("cadastraDisciplina")
+    @PostMapping("data/cadastraDisciplina")
     public boolean cadastraDisciplina(@RequestBody Disciplina disciplina);
 
-    @PutMapping("matricular/{matricula}/{codigo}/{turmacodigo}")
+    @PutMapping("data/matricular/{matricula}/{codigo}/{turmacodigo}")
     public boolean matricularEm(@PathVariable long matricula, @PathVariable String codigo, @PathVariable long turmacodigo);
 }

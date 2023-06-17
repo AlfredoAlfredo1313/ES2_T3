@@ -21,5 +21,17 @@ insert into disciplina (turmacodigo, codigo, nome, horario)
 values(1, 'B3', 'ALEST 1', 'A');
 
 insert into disciplina (turmacodigo, codigo, nome, horario)
-values(2, 'B3', 'ALEST 1', 'A');
+values(2, 'B3', 'ALEST 1', 'D');
+
+insert into disciplina (turmacodigo, codigo, nome, horario)
+values(3, 'B3', 'ALEST 1', 'C');
+
+insert into disciplina (turmacodigo, codigo, nome, horario)
+values(1, 'C2', 'ES2', 'D');
+
+insert into disciplina (turmacodigo, codigo, nome, horario)
+values(2, 'C2', 'ES2', 'G');
+
+insert into disciplina (turmacodigo, codigo, nome, horario)
+values(3, 'C2', 'ES2', 'C');
 

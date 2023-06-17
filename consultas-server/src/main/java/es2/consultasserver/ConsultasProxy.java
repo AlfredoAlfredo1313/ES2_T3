@@ -10,19 +10,19 @@ import org.springframework.web.bind.annotation.PathVariable;
 @FeignClient(name = "data-server")
 public interface ConsultasProxy {
     
-    @GetMapping("getEstudante/{matricula}")
+    @GetMapping("data/getEstudante/{matricula}")
     public Estudante getEstudanteByMatricula(@PathVariable long matricula);
 
-    @GetMapping("getEstudante")
+    @GetMapping("data/getEstudante")
     public List<Estudante> getodosEstudantes();
 
-    @GetMapping("getDisciplina/{codigo}/{turmacodigo}/Estudantes")
+    @GetMapping("data/getDisciplina/{codigo}/{turmacodigo}/Estudantes")
     public Disciplina getDisciplina(@PathVariable String codigo, @PathVariable long turmacodigo);
 
-    @GetMapping("getEstudante/{matricula}/Disciplinas")
+    @GetMapping("data/getEstudante/{matricula}/Disciplinas")
     public List<Disciplina> findEstudanteDisciplinas(@PathVariable long matricula);
 
-    @GetMapping("getDisciplina/{codigo}/{turmacodigo}/Estudantes")
+    @GetMapping("data/getDisciplina/{codigo}/{turmacodigo}/Estudantes")
     public List<Estudante> findDisciplinaEstudante(@PathVariable String codigo, @PathVariable long turmacodigo);
     
 }
